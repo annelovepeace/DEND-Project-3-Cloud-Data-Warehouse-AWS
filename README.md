@@ -19,74 +19,72 @@ Two datasets that reside in S3:
     > below is an example of what the data in a log file, 2018-11-12-events.json, looks like.
 </ol>
 
-![](https://r766469c826419xjupyterlr5tapor7.udacity-student-workspaces.com/files/img/log-data-examples.png)
+![](img/log-data-examples.png)
     
 
 ### Tasks
-<ol>
-    <li><strong>Redshift cluster setup<strong></li>
-    > launch a readshift database dc2.large cluster with 4 nodes<br>
-    > create an IAM role that has read access to S3<br>
-        <li><strong>Designing tables in <em>sql_queries.py</em></strong></li>
-    > design fact and dimension tables for a star schema<br>
-         fact table: songplays<br>
-         dimension tables: users, songs, artists, time<br>
-    > design staging tables: staging_events, staging_songs<br>
-    > write a CREATE statement for each of these tables<br>
-    > write a DROP statements to drop tables if the tables already exist<br>
-    <li><strong>Creating tables in <em>create_tables.py</em></li>
-    > connect to the database<br>
-    > create fact, dimension, staging tabels
-    <li><strong>Buidling ETL pipeline in <em>etl.py</em></strong></li>
-    > implement the logic to load data from S3 to staging tables on Redshift<br>
-    > implement the logic to load data from staging tables to analytics tables on Redshift<br>
-    <li><strong>Cluster cleanup</strong></li>
-    > remember to delete the Redshift cluster when finish
-        
-</ol>
+1. **Redshift cluster setup**
+    - launch a readshift database dc2.large cluster with 4 nodes
+    - create an IAM role that has read access to S3
+2. **Designing tables in _'sql_queries.py'_**
+    - design fact and dimension tables for a star schema\
+         fact table: songplays\
+         dimension tables: users, songs, artists, time
+    - design staging tables: staging_events, staging_songs
+    - write a CREATE statement for each of these tables
+    - write a DROP statements to drop tables if the tables already exist
+3. **Creating tables in _'create_tables.py'_**
+    - connect to the database
+    - create fact, dimension, staging tables
+4. **Buidling ETL pipeline in _'etl.py'_**
+    - implement the logic to load data from S3 to staging tables on Redshift
+    - implement the logic to load data from staging tables to analytics tables on Redshift
+5. **Cluster cleanup**
+    - remember to delete the Redshift cluster when finish
 
 ---
 # To run the Python scripts
-<ol>
-    <li>Get <em>[Cluster]</em> and <em>[IAM_ROLE]</em> from Redshift to fill dwh.cfg file
-    <li>Click <em>File -> New -> Console</em> at top menu bar</li>
-    <li>Select kernel <em>Python3</em></li>
-    <li>Type <code>'%run create_tables.py'<\code> in the console cell</li>
-    <li>Click <em>Run -> Run selected cell</em> at top menu bar</li>
-    <li>Type <code>'%run etl.py'<\code> in the console cell</li>
-    <li>Click <em>Run -> Run selected cell</em> at top menu bar</li>
-</ol>
-
+  1. Get _[Cluster]_ and _[IAM_ROLE]_ from Redshift to fill dwh.cfg file
+  2. Click _File_ -> _New_ -> _Console_ at top menu bar
+  3. Select kernel _Python3_
+  4. Type `%run create_tables.py` in the console cell
+  5. Click _Run_ -> _Run selected cell_ at top menu bar
+  6. Type `%run etl.py` in the console cell
+  7. Click _Run_ -> _Run selected cell_ at top menu bar
+        
         
 ---
 # Files in the repository
 The project workspace includes five files:
-<ul>
-    <li><strong><em>create_tables.py</em></strong> creates the fact and dimension tables for the star schema in Redshift.</li>
-    <li><strong><em>etl.py</em></strong> loads data from S3 into staging tables on Redshift and then process that data into the fact and dimension tables on Redshift.</li>
-    <li><strong><em>sql_queries.py</em></strong> contains all sql queries, which are imported into the last two files above.</li>
-    <li><strong><em>dwh.cfg</em></strong> stores cluster, IAM role, S3 file path information, which are imported into the last three files above.</li>
-    <li><strong><em>README.md</em></strong> this file provides discussion on the project.</li>
-</ul>
+- **_create_tables.py_** creates the fact and dimension tables for the star schema in Redshift.
+- **_etl.py_** loads data from S3 into staging tables on Redshift and then process that data into the fact and dimension tables on Redshift.
+- **_sql_queries.py_**  contains all sql queries, which are imported into the last two files above.
+- **_dwh.cfg_**  stores cluster, IAM role, S3 file path information, which are imported into the last three files above.
+- **_README.md_**  this file provides discussion on the project.
         
 
 ---
 # Results
 
-<strong>Analysis on songplay table</strong><br>
-<ul>
-    <li><strong>The most popular song</strong> is 'You're The One'<br>
-        query:<br>
+**Analysis on songplay table**
+
+1. The most popular song is 'You're The One'
+
+    query:
+    
+    ![](img/query1_song_code.png)        
         
-![](https://r766469c826419xjupyterlr5tapor7.udacity-student-workspaces.com/files/img/query1_song_code.png)        
-        result:<br>
-![](https://r766469c826419xjupyterlr5tapor7.udacity-student-workspaces.com/files/img/query1_song_result.png)
-        <br>
-        <br>
+    result:
+    
+    ![](img/query1_song_result.png)
+
         
- <li><strong>The most popular artist</strong> is 'Dwight Yoakam'<br>
-        query:<br>
-        
-![](https://r766469c826419xjupyterlr5tapor7.udacity-student-workspaces.com/files/img/query2_artist_code.png)        
-        result:<br>
-![](https://r766469c826419xjupyterlr5tapor7.udacity-student-workspaces.com/files/img/query2_artist_result.png)
+2. The most popular artistis 'Dwight Yoakam'
+
+    query:
+    
+    ![](img/query2_artist_code.png)    
+
+    result:
+
+    ![](img/query2_artist_result.png)
